@@ -1,147 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>THREE JS - Lesson</title>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.139.0/build/three.module.js",
+          "OrbitControls": "https://unpkg.com/three@0.139.0/examples/jsm/controls/OrbitControls.js",
+          "GLTFLoader": "https://unpkg.com/three@0.139.0/examples/jsm/loaders/GLTFLoader.js",
+          "RectAreaLightHelper": "https://unpkg.com/three@0.139.0/examples/jsm/helpers/RectAreaLightHelper.js",
+          "RectAreaLightUniformsLib": "https://unpkg.com/three@0.139.0/examples/jsm/lights/RectAreaLightUniformsLib.js"
+        }
+      }
+    </script>
+    <!-- <script type="module">
+      import * as THREE from 'three'
+      import { OrbitControls } from 'OrbitControls'
+      import { GLTFLoader } from 'GLTFLoader'
+      import { RectAreaLightHelper } from 'RectAreaLightHelper'
+      import { RectAreaLightUniformsLib } from 'RectAreaLightUniformsLib'
 
-    <style>
-        * {margin:0;padding:0;}
+      function init() {
+        let container = document.querySelector('.container')
 
-        body {overflow: hidden;}
+        //Scene
+        const scene = new THREE.Scene()
+        scene.background = new THREE.Color('#E2DFE1')
 
-        .container {width: 100%; height: 100vh;}
-    </style>
+        //Camera
+        const camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          3000
+        )
+        camera.position.set(0, 0.5, 1)
 
+        //render
+        const renderer = new THREE.WebGLRenderer({ antialias: true })
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        container.appendChild(renderer.domElement)
+
+        let plain
+        {
+          plain = new THREE.Mesh(
+            new THREE.PlaneGeometry(1000, 1000),
+            new THREE.MeshBasicMaterial({ color: '#E2DFE1' })
+          )
+          plain.reciveShadow = true
+          plain.position.set(0, -1, 0)
+          plain.rotateX(-Math.PI / 2)
+          scene.add(plain)
+        }
+
+        // Model
+        {
+          const loader = new GLTFLoader()
+          loader.load(
+            './model/scene.gltf',
+            (gltf) => {
+              scene.add(gltf.scene)
+            },
+            function (error) {
+              console.log('Error: ' + error)
+            }
+          )
+        }
+
+        {
+          const light = new THREE.DirectionalLight(0xffffff, 1)
+          light.position.set(-2, 0, 10)
+          light.lookAt(0, -1, 0)
+          scene.add(light)
+
+          // Helper
+          // const helper = new THREE.DirectionalLightHelper(light, 5)
+          // scene.add(helper)
+        }
+
+        {
+          const light = new THREE.DirectionalLight(0xffffff, 1)
+          light.position.set(2, 0, 5)
+          light.lookAt(0, 1, 0)
+          scene.add(light)
+
+          // Helper
+          // const helper = new THREE.DirectionalLightHelper(light, 5)
+          // scene.add(helper)
+        }
+
+        RectAreaLightUniformsLib.init()
+        {
+          const rectLight = new THREE.RectAreaLight(0xffffff, 1, 100, 100)
+          rectLight.position.set(-10, 0, 0)
+          rectLight.rotation.y = Math.PI + Math.PI / 4
+          scene.add(rectLight)
+        }
+
+        {
+          const rectLight = new THREE.RectAreaLight(0xffffff, 1, 100, 100)
+          rectLight.position.set(10, 0, 0)
+          rectLight.rotation.y = Math.PI - Math.PI / 4
+          scene.add(rectLight)
+        }
+
+        //OrbitControls
+        const controls = new OrbitControls(camera, renderer.domElement)
+        controls.autoRotate = true
+        controls.autoRotateSpeed = 5
+        controls.enableDamping = true
+
+        //Resize
+        window.addEventListener('resize', onWindowResize, false)
+
+        function onWindowResize() {
+          camera.aspect = window.innerWidth / window.innerHeight
+          camera.updateProjectionMatrix()
+
+          renderer.setSize(window.innerWidth, window.innerHeight)
+        }
+
+        // Animate
+        function animate() {
+          requestAnimationFrame(animate)
+          controls.update()
+          renderer.render(scene, camera)
+        }
+        animate()
+      }
+
+      init()
+    </script> -->
+    <script src="index.js" type="module"></script>
+  </head>
+  <body>
     <div class="container"></div>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.139.0/build/three.module.js",
-                "OrbitControls": "https://unpkg.com/three@0.139.0/examples/jsm/controls/OrbitControls.js",
-                "GLTFLoader": "https://unpkg.com/three@0.139.0/examples/jsm/loaders/GLTFLoader.js",
-                "RectAreaLightHelper": "https://unpkg.com/three@0.139.0/examples/jsm/helpers/RectAreaLightHelper.js",
-                "RectAreaLightUniformsLib": "https://unpkg.com/three@0.139.0/examples/jsm/lights/RectAreaLightUniformsLib.js"
-            }
-        }
-    </script>
+    <div class="header"></div>
 
-    <script type="module">
+    <div class="footer">
+      <div class="address">NOVINSKY BOULEVARD, 25</div>
 
-        import * as THREE from 'three';
-        import { OrbitControls } from 'OrbitControls';
-        import { GLTFLoader } from 'GLTFLoader';
-        import { RectAreaLightHelper } from 'RectAreaLightHelper'
-        import { RectAreaLightUniformsLib } from 'RectAreaLightUniformsLib';
+      <div class="icons">
+        <span class="phone"></span>
+        <span class="email"></span>
+      </div>
+    </div>
 
-        function init() {
-            let container = document.querySelector('.container');
+    <nav class="mainMenu">
+      <div class="about">
+        <h2><a href="#about">About</a></h2>
+        <ul>
+          <li><a href="#">the narkomfin building</a></li>
+          <li><a href="#">history</a></li>
+        </ul>
+      </div>
+      <div class="visit">
+        <h2><a href="#visit">visit</a></h2>
+        <ul>
+          <li><a href="#">how to get there</a></li>
+          <li><a href="#">garage card and patrons</a></li>
+          <li><a href="#">host an event</a></li>
+        </ul>
+      </div>
+      <div class="tours">
+        <h2><a href="#tours">tours</a></h2>
+        <ul>
+          <li><a href="#">by a ticket</a></li>
+        </ul>
+      </div>
+      <div class="cafe">
+        <h2><a href="#cafe">narkomfin cafe</a></h2>
+      </div>
+      <div class="bookshop">
+        <h2><a href="#bookshop">bookshop</a></h2>
+      </div>
+    </nav>
 
-            //Scene
-            const scene = new THREE.Scene()
-            scene.background = new THREE.Color("#E2DFE1");
-
-            //Camera
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 3000);
-            camera.position.set(0, 0.5, 1)
-
-            //render
-            const renderer = new THREE.WebGLRenderer({antialias: true})
-            renderer.setSize(window.innerWidth, window.innerHeight)
-            container.appendChild(renderer.domElement)
-
-            let plain;
-            {
-                plain = new THREE.Mesh(
-                    new THREE.PlaneGeometry(1000, 1000),
-                    new THREE.MeshBasicMaterial({color: "#E2DFE1"})
-                )
-                plain.reciveShadow = true;
-                plain.position.set(0, -1, 0)
-                plain.rotateX(-Math.PI / 2);
-                scene.add(plain)
-            }
-
-            // Model
-            {
-                const loader = new GLTFLoader();
-                loader.load('./model/scene.gltf', gltf => {
-                scene.add(gltf.scene);
-                }, 
-                    function (error) {
-                        console.log('Error: ' + error)
-                    }
-                )
-            }
-            
-            {
-                const light = new THREE.DirectionalLight(0xffffff, 1)
-                light.position.set(-2, 0, 10)
-                light.lookAt(0, -1, 0)
-                scene.add(light)
-
-                // Helper
-                // const helper = new THREE.DirectionalLightHelper(light, 5)
-                // scene.add(helper)
-            }
-
-            {
-                const light = new THREE.DirectionalLight(0xffffff, 1)
-                light.position.set(2, 0, 5)
-                light.lookAt(0, 1, 0)
-                scene.add(light)
-
-                // Helper
-                // const helper = new THREE.DirectionalLightHelper(light, 5)
-                // scene.add(helper)
-            }
-
-            RectAreaLightUniformsLib.init();
-            {
-                const rectLight = new THREE.RectAreaLight(0xffffff, 1, 100, 100);
-                rectLight.position.set(-10,0,0)
-                rectLight.rotation.y = Math.PI + Math.PI/4;
-                scene.add(rectLight)
-            }
-
-            {
-                const rectLight = new THREE.RectAreaLight(0xffffff, 1, 100, 100);
-                rectLight.position.set(10,0,0)
-                rectLight.rotation.y = Math.PI - Math.PI/4;
-                scene.add(rectLight)
-            }
-            
-            //OrbitControls
-            const controls = new OrbitControls(camera, renderer.domElement);
-            controls.autoRotate = true;
-            controls.autoRotateSpeed = 5;
-            controls.enableDamping = true;
-
-            //Resize
-            window.addEventListener('resize', onWindowResize, false)
-            
-            function onWindowResize() {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-
-                renderer.setSize(window.innerWidth, window.innerHeight)
-            }
-
-            // Animate
-            function animate() {
-                requestAnimationFrame(animate)
-                controls.update();
-                renderer.render(scene, camera)
-            }
-            animate()
-
-        }
-
-        init()
-    </script>
-</body>
+    <div class="content none">
+      <div class="contentHeader">
+        <div class="closeButton"></div>
+        <div class="header"></div>
+      </div>
+      <div class="contentMain">
+        <div id="about" class="none">
+          <h1>About the Narkomfin Building</h1>
+          <h2>About the project</h2>
+          <p>
+            The Narkomfin Building is an institutional and research project of
+            Garage Museum of Contemporary Art. The Museum team is studying both
+            the architectural significance of the building and the life stories
+            of its creators and inhabitants over a period of 100 years. The
+            knowledge generated will form the basis of tour itineraries,
+            publications, and various public and education projects constructed
+            around this legendary building. In addition, residents of the
+            building, Museum patrons, and GARAGE cardholders have access to
+            Narkomfin Café, and a book shop has opened on the first floor of the
+            residential block.
+          </p>
+          <h2>History of the building</h2>
+          <p class="lead">
+            The residential building created for staff of the Ministry of
+            Finance of the RSFSR, which is now known as the Narkomfin Building,
+            is one of the best-known experimental constructions in the USSR of
+            the late 1920s and early 1930s.
+          </p>
+          <p>
+            The history of the building’s construction is closely connected with
+            social processes taking place in the first decades of the USSR’s
+            existence. Representatives of various professions were tasked with
+            educating the new Soviet citizen, who would speak a new language,
+            live according to the precepts of communism, and, as a result,
+            become a true champion of its ideas. In architecture this led to the
+            creation of house-communes and «transitional type» projects such as
+            the Narkomfin Building. Laundry, childcare, and even residents’
+            leisure activities were all designed to take place in shared spaces
+            and meals were to be served in a communal dining room.
+          </p>
+          <p>
+            However, the Narkomfin Building was famous not so much for its
+            social concept as its unusual architectural solution.
+          </p>
+          <p>
+            The Narkomfin Building was based on designs for apartments developed
+            by staff of the section for typifying residential accommodation of
+            the Construction Committee (STROIKOM) of the RSFSR, headed by Moisei
+            Ginzburg. The architect Alexander Pasternak, brother of the poet
+            Boris Pasternak, became the lead staff member and a close associate
+            of Ginzburg. He was the author of a series of projects for living
+            cells, as compact apartments designed for various types of family
+            were then called.
+          </p>
+          <p>
+            As a result of the section’s work, a decree was issued that
+            recommended various versions of living cells for mass construction
+            and the rest for experimental buildings. The design provided
+            economical but comfortable living accommodation for the time, and
+            natural lighting was also preferred.
+          </p>
+          <p>
+            The few remaining design drawings for the Narkomfin Building—working
+            drawings and blueprint copies—do not entirely match the building as
+            constructed. (In 1934, Ginzburg published the drawings submitted for
+            approval and not the final version.) In particular, in some
+            apartments additional rooms were created and other elements were
+            included that did not feature in the design. However, from the
+            beginning the Narkomfin Building consisted of three blocks: the
+            housekeeping block, the communal block, and the residential block
+            (the unbuilt second project included another housekeeping block and
+            a second residential block).
+          </p>
+        </div>
+        <div id="visit" class="none"></div>
+        <div id="tours" class="none"></div>
+        <div id="cafe" class="none"></div>
+        <div id="bookshop" class="none"></div>
+      </div>
+    </div>
+  </body>
 </html>

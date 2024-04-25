@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  font-family: Loos, sans-serif;
+  font-style: normal;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+@font-face {
+  font-family: Loos;
+  src: url('./fonts/Loos.woff2');
+  font-weight: 400;
+}
+
+.container {
+  cursor: grab;
+}
+.container:active {
+  cursor: grabbing;
+}
+
+.mainMenu {
+  width: 324px;
+  height: 100vh;
+  border-right: 1px solid black;
+  backdrop-filter: blur(30px);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.mainMenu > div {
+  padding: 20px;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+ul,
+li,
+h2 {
+  list-style: none;
+  width: 100%;
+}
+a {
+  width: 100%;
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  position: relative;
+}
+a:hover {
+  text-decoration: underline;
+}
+.cafe,
+.bookshop {
+  height: 72px;
+}
+.about,
+.visit,
+.tours {
+  height: calc((100% - 144px) / 3);
+}
+.mainMenu h2 {
+  font-size: 30px;
+  line-height: 100%;
+}
+.mainMenu li {
+  font-size: 15px;
+  line-height: 100%;
+}
+.mainMenu ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.mainMenu > div a:before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-image: url('https://img.icons8.com/ios/50/right--v1.png');
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 0.25s;
+}
+.mainMenu > div li a:before {
+  top: -8px;
+}
+.mainMenu > div li:hover a:before,
+.mainMenu > div h2:hover a:before {
+  opacity: 1;
+  transform: translateX(5px);
+  transition: transform 0.25s, opacity 0.25s;
+}
+.header {
+  width: 60%;
+  height: 20%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px 15px;
+  background-image: url(./images/logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* background-position: center; */
+}
+.footer {
+  width: calc(100% - 324px);
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  border-top: 1px solid black;
+  backdrop-filter: blur(20px);
+}
+.address {
+  width: calc(100% - 90px);
+  text-align: center;
+  line-height: 40px;
+  border-right: 1px solid black;
+}
+.icons {
+  width: 90px;
+  padding: 7px 17px 7px 7px;
+  display: flex;
+  justify-content: space-between;
+}
+.phone,
+.email {
+  width: 26px;
+  height: 26px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.phone {
+  background-image: url('https://img.icons8.com/ios/50/phone--v1.png');
+}
+.email {
+  background-image: url('https://img.icons8.com/parakeet-line/48/new-post.png');
+}
+.content {
+  width: calc((100% - 324px) / 2);
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  backdrop-filter: blur(20px);
+  padding: 20px 20px 60px;
+  border-left: 1px solid black;
+  overflow: scroll;
+}
+.content * {
+  line-height: 100%;
+}
+.content h1 {
+  font-size: 56px;
+  margin-top: 80px;
+}
+.content h2 {
+  font-size: 36px;
+  margin: 20px 0;
+}
+.content p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+.content p.lead {
+  font-size: 24px;
+}
+.contentHeader {
+  width: 100%;
+  height: 74px;
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.closeButton {
+  width: 50px;
+  height: 50px;
+  background-image: url('https://img.icons8.com/ios/50/cancel.png');
+  background-size: cover;
+  cursor: pointer;
+}
+.contentHeader > .header {
+  position: relative;
+  width: 60%;
+  margin: 0;
+  height: 60%;
+}
+.none {
+  display: none;
+}
+.active {
+  color: white;
+  background-color: #222;
+}
+div.active a {
+  color: white;
+}
+div.active a:before {
+  filter: invert(1);
+}
