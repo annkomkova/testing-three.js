@@ -1,39 +1,41 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  overflow: hidden;
-  font-family: Loos, sans-serif;
-  font-style: normal;
-  text-transform: uppercase;
-  font-weight: 400;
-  line-height: 100%;
-}
-
 @font-face {
   font-family: Loos;
   src: url('./fonts/Loos.woff2');
   font-weight: 400;
 }
-
-.container {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.model {
+  width: 100vw;
+  height: 100vh;
   cursor: grab;
 }
-.container:active {
+.model:active {
   cursor: grabbing;
 }
-
+body {
+  overflow: hidden;
+  font-family: Loos, sans-serif;
+  font-weight: 400;
+  line-height: 100%;
+}
+.mainMenu,
+.footer,
+.content {
+  backdrop-filter: blur(30px);
+  background-color: rgba(225, 225, 223, 0.3);
+}
 .mainMenu {
   width: 324px;
   height: 100vh;
   border-right: 1px solid black;
-  backdrop-filter: blur(30px);
   position: absolute;
   top: 0;
   left: 0;
+  text-transform: uppercase;
 }
 .mainMenu > div {
   padding: 20px;
@@ -41,22 +43,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-ul,
-li,
-h2 {
-  list-style: none;
-  width: 100%;
-}
-a {
-  width: 100%;
-  display: inline-block;
-  color: black;
-  text-decoration: none;
-  position: relative;
-}
-a:hover {
-  text-decoration: underline;
 }
 .cafe,
 .bookshop {
@@ -67,6 +53,21 @@ a:hover {
 .tours {
   height: calc((100% - 144px) / 3);
 }
+ul,
+li,
+h2,
+a {
+  width: 100%;
+}
+.mainMenu a {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  position: relative;
+}
+.mainMenu a:hover {
+  text-decoration: underline;
+}
 .mainMenu h2 {
   font-size: 30px;
   line-height: 100%;
@@ -76,91 +77,66 @@ a:hover {
   line-height: 100%;
 }
 .mainMenu ul {
+  list-style-type: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
 }
-.mainMenu > div a:before {
+.mainMenu a::before {
   content: '';
   display: block;
   width: 30px;
   height: 30px;
   background-image: url('https://img.icons8.com/ios/50/right--v1.png');
-  background-position: center;
-  background-size: cover;
+  background-size: contain;
   position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
-  transition: all 0.25s;
+  transition: all ease 0.4s;
 }
-.mainMenu > div li a:before {
+.mainMenu li a::before {
   top: -8px;
 }
-.mainMenu > div li:hover a:before,
-.mainMenu > div h2:hover a:before {
+.mainMenu h2:hover a::before,
+.mainMenu li:hover a::before {
   opacity: 1;
   transform: translateX(5px);
-  transition: transform 0.25s, opacity 0.25s;
+  transition: all ease 0.4s;
 }
-.header {
-  width: 60%;
-  height: 20%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 20px 15px;
-  background-image: url(./images/logo.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  /* background-position: center; */
-}
+
 .footer {
   width: calc(100% - 324px);
   height: 40px;
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 2;
-  display: flex;
   border-top: 1px solid black;
-  backdrop-filter: blur(20px);
-}
-.address {
-  width: calc(100% - 90px);
-  text-align: center;
-  line-height: 40px;
-  border-right: 1px solid black;
-}
-.icons {
-  width: 90px;
-  padding: 7px 17px 7px 7px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
-.phone,
-.email {
-  width: 26px;
-  height: 26px;
+
+.header {
+  width: 60%;
+  height: 20%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  background-image: url('./images/logo.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
-.phone {
-  background-image: url('https://img.icons8.com/ios/50/phone--v1.png');
-}
-.email {
-  background-image: url('https://img.icons8.com/parakeet-line/48/new-post.png');
-}
+
 .content {
-  width: calc((100% - 324px) / 2);
+  width: 40%;
   height: 100vh;
   position: absolute;
-  z-index: 1;
   top: 0;
   right: 0;
-  backdrop-filter: blur(20px);
-  padding: 20px 20px 60px;
+  padding: 20px;
   border-left: 1px solid black;
   overflow: scroll;
 }
@@ -179,44 +155,44 @@ a:hover {
   font-size: 18px;
   margin: 10px 0;
 }
-.content p.lead {
+.content p.bold {
   font-size: 24px;
+  font-weight: 700;
 }
 .contentHeader {
   width: 100%;
   height: 74px;
-  display: flex;
-  padding: 0 20px;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: 1px solid black;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.contentHeader > .header {
+  width: 60%;
+  height: 60%;
+  margin: 0;
+  position: relative;
+  background-position: center;
 }
 .closeButton {
   width: 50px;
   height: 50px;
   background-image: url('https://img.icons8.com/ios/50/cancel.png');
-  background-size: cover;
   cursor: pointer;
 }
-.contentHeader > .header {
-  position: relative;
-  width: 60%;
-  margin: 0;
-  height: 60%;
+.active {
+  background-color: #222;
+}
+.active a {
+  color: white;
+}
+.active a::before {
+  filter: invert(1);
 }
 .none {
   display: none;
-}
-.active {
-  color: white;
-  background-color: #222;
-}
-div.active a {
-  color: white;
-}
-div.active a:before {
-  filter: invert(1);
 }

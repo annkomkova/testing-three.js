@@ -2,9 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>THREE JS - Lesson</title>
+    <title>Narkomfin building</title>
     <link rel="stylesheet" href="style.css" />
     <script type="importmap">
       {
@@ -12,174 +11,46 @@
           "three": "https://unpkg.com/three@0.139.0/build/three.module.js",
           "OrbitControls": "https://unpkg.com/three@0.139.0/examples/jsm/controls/OrbitControls.js",
           "GLTFLoader": "https://unpkg.com/three@0.139.0/examples/jsm/loaders/GLTFLoader.js",
-          "RectAreaLightHelper": "https://unpkg.com/three@0.139.0/examples/jsm/helpers/RectAreaLightHelper.js",
           "RectAreaLightUniformsLib": "https://unpkg.com/three@0.139.0/examples/jsm/lights/RectAreaLightUniformsLib.js"
         }
       }
     </script>
-    <!-- <script type="module">
-      import * as THREE from 'three'
-      import { OrbitControls } from 'OrbitControls'
-      import { GLTFLoader } from 'GLTFLoader'
-      import { RectAreaLightHelper } from 'RectAreaLightHelper'
-      import { RectAreaLightUniformsLib } from 'RectAreaLightUniformsLib'
-
-      function init() {
-        let container = document.querySelector('.container')
-
-        //Scene
-        const scene = new THREE.Scene()
-        scene.background = new THREE.Color('#E2DFE1')
-
-        //Camera
-        const camera = new THREE.PerspectiveCamera(
-          75,
-          window.innerWidth / window.innerHeight,
-          0.1,
-          3000
-        )
-        camera.position.set(0, 0.5, 1)
-
-        //render
-        const renderer = new THREE.WebGLRenderer({ antialias: true })
-        renderer.setSize(window.innerWidth, window.innerHeight)
-        container.appendChild(renderer.domElement)
-
-        let plain
-        {
-          plain = new THREE.Mesh(
-            new THREE.PlaneGeometry(1000, 1000),
-            new THREE.MeshBasicMaterial({ color: '#E2DFE1' })
-          )
-          plain.reciveShadow = true
-          plain.position.set(0, -1, 0)
-          plain.rotateX(-Math.PI / 2)
-          scene.add(plain)
-        }
-
-        // Model
-        {
-          const loader = new GLTFLoader()
-          loader.load(
-            './model/scene.gltf',
-            (gltf) => {
-              scene.add(gltf.scene)
-            },
-            function (error) {
-              console.log('Error: ' + error)
-            }
-          )
-        }
-
-        {
-          const light = new THREE.DirectionalLight(0xffffff, 1)
-          light.position.set(-2, 0, 10)
-          light.lookAt(0, -1, 0)
-          scene.add(light)
-
-          // Helper
-          // const helper = new THREE.DirectionalLightHelper(light, 5)
-          // scene.add(helper)
-        }
-
-        {
-          const light = new THREE.DirectionalLight(0xffffff, 1)
-          light.position.set(2, 0, 5)
-          light.lookAt(0, 1, 0)
-          scene.add(light)
-
-          // Helper
-          // const helper = new THREE.DirectionalLightHelper(light, 5)
-          // scene.add(helper)
-        }
-
-        RectAreaLightUniformsLib.init()
-        {
-          const rectLight = new THREE.RectAreaLight(0xffffff, 1, 100, 100)
-          rectLight.position.set(-10, 0, 0)
-          rectLight.rotation.y = Math.PI + Math.PI / 4
-          scene.add(rectLight)
-        }
-
-        {
-          const rectLight = new THREE.RectAreaLight(0xffffff, 1, 100, 100)
-          rectLight.position.set(10, 0, 0)
-          rectLight.rotation.y = Math.PI - Math.PI / 4
-          scene.add(rectLight)
-        }
-
-        //OrbitControls
-        const controls = new OrbitControls(camera, renderer.domElement)
-        controls.autoRotate = true
-        controls.autoRotateSpeed = 5
-        controls.enableDamping = true
-
-        //Resize
-        window.addEventListener('resize', onWindowResize, false)
-
-        function onWindowResize() {
-          camera.aspect = window.innerWidth / window.innerHeight
-          camera.updateProjectionMatrix()
-
-          renderer.setSize(window.innerWidth, window.innerHeight)
-        }
-
-        // Animate
-        function animate() {
-          requestAnimationFrame(animate)
-          controls.update()
-          renderer.render(scene, camera)
-        }
-        animate()
-      }
-
-      init()
-    </script> -->
-    <script src="index.js" type="module"></script>
+    <script src="model.js" type="module"></script>
   </head>
   <body>
-    <div class="container"></div>
-
-    <div class="header"></div>
-
-    <div class="footer">
-      <div class="address">NOVINSKY BOULEVARD, 25</div>
-
-      <div class="icons">
-        <span class="phone"></span>
-        <span class="email"></span>
-      </div>
-    </div>
+    <div class="model"></div>
 
     <nav class="mainMenu">
       <div class="about">
         <h2><a href="#about">About</a></h2>
         <ul>
-          <li><a href="#">the narkomfin building</a></li>
-          <li><a href="#">history</a></li>
+          <li><a href="#about1">the Narkomfin building</a></li>
+          <li><a href="#about2">history</a></li>
         </ul>
       </div>
       <div class="visit">
         <h2><a href="#visit">visit</a></h2>
         <ul>
-          <li><a href="#">how to get there</a></li>
-          <li><a href="#">garage card and patrons</a></li>
-          <li><a href="#">host an event</a></li>
+          <li><a href="#visit1">how to get there</a></li>
+          <li><a href="#visit2">garage card and patrons</a></li>
+          <li><a href="#visit3">host an event</a></li>
         </ul>
       </div>
       <div class="tours">
         <h2><a href="#tours">tours</a></h2>
         <ul>
-          <li><a href="#">by a ticket</a></li>
+          <li><a href="#tours1">buy a ticket</a></li>
         </ul>
       </div>
       <div class="cafe">
-        <h2><a href="#cafe">narkomfin cafe</a></h2>
+        <h2><a href="#cafe">cafe</a></h2>
       </div>
       <div class="bookshop">
         <h2><a href="#bookshop">bookshop</a></h2>
       </div>
     </nav>
+
+    <div class="header"></div>
 
     <div class="content none">
       <div class="contentHeader">
@@ -189,7 +60,7 @@
       <div class="contentMain">
         <div id="about" class="none">
           <h1>About the Narkomfin Building</h1>
-          <h2>About the project</h2>
+          <h2 id="about1">About the project</h2>
           <p>
             The Narkomfin Building is an institutional and research project of
             Garage Museum of Contemporary Art. The Museum team is studying both
@@ -202,8 +73,8 @@
             Narkomfin Café, and a book shop has opened on the first floor of the
             residential block.
           </p>
-          <h2>History of the building</h2>
-          <p class="lead">
+          <h2 id="about2">History of the building</h2>
+          <p class="bold">
             The residential building created for staff of the Ministry of
             Finance of the RSFSR, which is now known as the Narkomfin Building,
             is one of the best-known experimental constructions in the USSR of
@@ -255,11 +126,12 @@
             a second residential block).
           </p>
         </div>
-        <div id="visit" class="none"></div>
-        <div id="tours" class="none"></div>
-        <div id="cafe" class="none"></div>
-        <div id="bookshop" class="none"></div>
+        <div id="visit" class="none">
+          <h1>Visiting</h1>
+        </div>
       </div>
     </div>
+
+    <div class="footer">NOVINSKY BOULEVARD, 25</div>
   </body>
 </html>
