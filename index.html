@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Narkomfin building</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      async
+      src="https://ga.jspm.io/npm:es-module-shims@1.5.17/dist/es-module-shims.js"
+    ></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.139.0/build/three.module.js",
+          "OrbitControls": "https://unpkg.com/three@0.139.0/examples/jsm/controls/OrbitControls.js",
+          "GLTFLoader": "https://unpkg.com/three@0.139.0/examples/jsm/loaders/GLTFLoader.js",
+          "RectAreaLightUniformsLib": "https://unpkg.com/three@0.139.0/examples/jsm/lights/RectAreaLightUniformsLib.js"
+        }
+      }
+    </script>
+    <script src="model.js" type="module"></script>
+  </head>
+  <body>
+    <div class="model"></div>
+
+    <nav class="mainMenu">
+      <div class="about">
+        <h2><a href="#about">About</a></h2>
+        <ul>
+          <li><a href="#about1">the Narkomfin building</a></li>
+          <li><a href="#about2">history</a></li>
+        </ul>
+      </div>
+      <div class="visit">
+        <h2><a href="#visit">visit</a></h2>
+        <ul>
+          <li><a href="#visit1">how to get there</a></li>
+          <li><a href="#visit2">garage card and patrons</a></li>
+          <li><a href="#visit3">host an event</a></li>
+        </ul>
+      </div>
+      <div class="tours">
+        <h2><a href="#tours">tours</a></h2>
+        <ul>
+          <li><a href="#tours1">buy a ticket</a></li>
+        </ul>
+      </div>
+      <div class="cafe">
+        <h2><a href="#cafe">cafe</a></h2>
+      </div>
+      <div class="bookshop">
+        <h2><a href="#bookshop">bookshop</a></h2>
+      </div>
+    </nav>
+
+    <div class="header"></div>
+
+    <div class="content none">
+      <div class="contentHeader">
+        <div class="closeButton"></div>
+        <div class="header"></div>
+      </div>
+      <div class="contentMain">
+        <div id="about" class="none">
+          <h1>About the Narkomfin Building</h1>
+          <h2 id="about1">About the project</h2>
+          <p>
+            The Narkomfin Building is an institutional and research project of
+            Garage Museum of Contemporary Art. The Museum team is studying both
+            the architectural significance of the building and the life stories
+            of its creators and inhabitants over a period of 100 years. The
+            knowledge generated will form the basis of tour itineraries,
+            publications, and various public and education projects constructed
+            around this legendary building. In addition, residents of the
+            building, Museum patrons, and GARAGE cardholders have access to
+            Narkomfin Café, and a book shop has opened on the first floor of the
+            residential block.
+          </p>
+          <h2 id="about2">History of the building</h2>
+          <p class="bold">
+            The residential building created for staff of the Ministry of
+            Finance of the RSFSR, which is now known as the Narkomfin Building,
+            is one of the best-known experimental constructions in the USSR of
+            the late 1920s and early 1930s.
+          </p>
+          <p>
+            The history of the building’s construction is closely connected with
+            social processes taking place in the first decades of the USSR’s
+            existence. Representatives of various professions were tasked with
+            educating the new Soviet citizen, who would speak a new language,
+            live according to the precepts of communism, and, as a result,
+            become a true champion of its ideas. In architecture this led to the
+            creation of house-communes and «transitional type» projects such as
+            the Narkomfin Building. Laundry, childcare, and even residents’
+            leisure activities were all designed to take place in shared spaces
+            and meals were to be served in a communal dining room.
+          </p>
+          <p>
+            However, the Narkomfin Building was famous not so much for its
+            social concept as its unusual architectural solution.
+          </p>
+          <p>
+            The Narkomfin Building was based on designs for apartments developed
+            by staff of the section for typifying residential accommodation of
+            the Construction Committee (STROIKOM) of the RSFSR, headed by Moisei
+            Ginzburg. The architect Alexander Pasternak, brother of the poet
+            Boris Pasternak, became the lead staff member and a close associate
+            of Ginzburg. He was the author of a series of projects for living
+            cells, as compact apartments designed for various types of family
+            were then called.
+          </p>
+          <p>
+            As a result of the section’s work, a decree was issued that
+            recommended various versions of living cells for mass construction
+            and the rest for experimental buildings. The design provided
+            economical but comfortable living accommodation for the time, and
+            natural lighting was also preferred.
+          </p>
+          <p>
+            The few remaining design drawings for the Narkomfin Building—working
+            drawings and blueprint copies—do not entirely match the building as
+            constructed. (In 1934, Ginzburg published the drawings submitted for
+            approval and not the final version.) In particular, in some
+            apartments additional rooms were created and other elements were
+            included that did not feature in the design. However, from the
+            beginning the Narkomfin Building consisted of three blocks: the
+            housekeeping block, the communal block, and the residential block
+            (the unbuilt second project included another housekeeping block and
+            a second residential block).
+          </p>
+        </div>
+        <div id="visit" class="none">
+          <h1>Visiting</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">NOVINSKY BOULEVARD, 25</div>
+  </body>
+</html>

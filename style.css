@@ -1,0 +1,198 @@
+@font-face {
+  font-family: Loos;
+  src: url('./fonts/Loos.woff2');
+  font-weight: 400;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.model {
+  width: 100vw;
+  height: 100vh;
+  cursor: grab;
+}
+.model:active {
+  cursor: grabbing;
+}
+body {
+  overflow: hidden;
+  font-family: Loos, sans-serif;
+  font-weight: 400;
+  line-height: 100%;
+}
+.mainMenu,
+.footer,
+.content {
+  backdrop-filter: blur(30px);
+  background-color: rgba(225, 225, 223, 0.3);
+}
+.mainMenu {
+  width: 324px;
+  height: 100vh;
+  border-right: 1px solid black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-transform: uppercase;
+}
+.mainMenu > div {
+  padding: 20px;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cafe,
+.bookshop {
+  height: 72px;
+}
+.about,
+.visit,
+.tours {
+  height: calc((100% - 144px) / 3);
+}
+ul,
+li,
+h2,
+a {
+  width: 100%;
+}
+.mainMenu a {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  position: relative;
+}
+.mainMenu a:hover {
+  text-decoration: underline;
+}
+.mainMenu h2 {
+  font-size: 30px;
+  line-height: 100%;
+}
+.mainMenu li {
+  font-size: 15px;
+  line-height: 100%;
+}
+.mainMenu ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.mainMenu a::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-image: url('https://img.icons8.com/ios/50/right--v1.png');
+  background-size: contain;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  transition: all ease 0.4s;
+}
+.mainMenu li a::before {
+  top: -8px;
+}
+.mainMenu h2:hover a::before,
+.mainMenu li:hover a::before {
+  opacity: 1;
+  transform: translateX(5px);
+  transition: all ease 0.4s;
+}
+
+.footer {
+  width: calc(100% - 324px);
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-top: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  width: 60%;
+  height: 20%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  background-image: url('./images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.content {
+  width: 40%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  border-left: 1px solid black;
+  overflow: scroll;
+}
+.content * {
+  line-height: 100%;
+}
+.content h1 {
+  font-size: 56px;
+  margin-top: 80px;
+}
+.content h2 {
+  font-size: 36px;
+  margin: 20px 0;
+}
+.content p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+.content p.bold {
+  font-size: 24px;
+  font-weight: 700;
+}
+.contentHeader {
+  width: 100%;
+  height: 74px;
+  border-bottom: 1px solid black;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.contentHeader > .header {
+  width: 60%;
+  height: 60%;
+  margin: 0;
+  position: relative;
+  background-position: center;
+}
+.closeButton {
+  width: 50px;
+  height: 50px;
+  background-image: url('https://img.icons8.com/ios/50/cancel.png');
+  cursor: pointer;
+}
+.active {
+  background-color: #222;
+}
+.active a {
+  color: white;
+}
+.active a::before {
+  filter: invert(1);
+}
+.none {
+  display: none;
+}
